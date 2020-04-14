@@ -2,6 +2,7 @@ package com.tansquare.secureapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         btn_show_toast.setOnClickListener {
             log("Button click event captured")
+            Toast.makeText(this, " Toast Example ", Toast.LENGTH_SHORT).show()
         }
         kotlinTraining()
     }
