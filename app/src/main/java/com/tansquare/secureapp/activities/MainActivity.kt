@@ -1,10 +1,11 @@
 package com.tansquare.secureapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.tansquare.secureapp.Constants
 import com.tansquare.secureapp.R
+import com.tansquare.secureapp.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,13 +19,15 @@ class MainActivity : AppCompatActivity() {
     fun initActivity() {
         btn_show_toast.setOnClickListener {
             log("Button click event captured")
-            Toast.makeText(this, " Toast Example ", Toast.LENGTH_SHORT).show()
+
+            showToast(" Toast Example ")
         }
         btnSendMessage.setOnClickListener {
             val userMessage = etUserMessage.text.toString()
-            Toast.makeText(this, userMessage, Toast.LENGTH_SHORT).show()
+            showToast(userMessage)
+
             val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("user_message", userMessage)
+            intent.putExtra(Constants.USER_MSG_KEY, userMessage)
             startActivity(intent)
 
         }

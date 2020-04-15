@@ -1,9 +1,10 @@
 package com.tansquare.secureapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.tansquare.secureapp.Constants
 import com.tansquare.secureapp.R
+import com.tansquare.secureapp.showToast
 
 class SecondActivity : AppCompatActivity() {
 
@@ -11,8 +12,10 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         val bundle: Bundle? = intent.extras
-        val userMessage: String = bundle!!.getString("user_message")
-        Toast.makeText(this, userMessage, Toast.LENGTH_SHORT).show()
+        bundle?.let {
+            val userMessage: String = bundle.getString(Constants.USER_MSG_KEY)
+            showToast(userMessage)
+        }
 
     }
 }

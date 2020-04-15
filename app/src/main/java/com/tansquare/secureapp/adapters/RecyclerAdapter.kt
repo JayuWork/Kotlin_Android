@@ -4,13 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.tansquare.secureapp.R
 import com.tansquare.secureapp.models.RecylerData
+import com.tansquare.secureapp.showToast
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class RecyclerAdapter(val context: Context, val listItems: List<RecylerData>) :
+class RecyclerAdapter(val context: Context, private val listItems: List<RecylerData>) :
     RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -19,12 +19,18 @@ class RecyclerAdapter(val context: Context, val listItems: List<RecylerData>) :
 
         init {
             itemView.setOnClickListener {
-                Toast.makeText(context, currentItem!!.title, Toast.LENGTH_SHORT).show()
+                currentItem?.let {
+                    context.showToast(currentItem!!.title)
+                }
             }
         }
 
         fun setData(data: RecylerData?, position: Int) {
-            itemView.txvTitle.text = data!!.title
+            data?.let {
+                itemView.txvTitle.text = data.title
+                this.currentItem = data
+                this.currentPosition = position
+            }
         }
 
     }

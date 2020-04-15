@@ -14,6 +14,11 @@ class RecyclerViewDemoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view_demo)
 
+        initRecyclerView()
+
+    }
+
+    private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerViewDemo.layoutManager = layoutManager
@@ -23,6 +28,5 @@ class RecyclerViewDemoActivity : AppCompatActivity() {
             RecylerDataList.listItems
         )
         recyclerViewDemo.adapter = adapter
-
     }
 }
