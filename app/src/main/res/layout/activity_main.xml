@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <Button
         android:id="@+id/btn_show_toast"
@@ -14,6 +14,36 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:text="Hello World!" />
+        android:text="Show Toast" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etUserMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Enter your message" />
+
+
+        <Button
+            android:id="@+id/btnSendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="Send Message" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRecyclerViewDemo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RecyclerViewDemo" />
 </LinearLayout>

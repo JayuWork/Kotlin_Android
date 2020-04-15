@@ -1,8 +1,10 @@
-package com.tansquare.secureapp
+package com.tansquare.secureapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.tansquare.secureapp.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -10,11 +12,27 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initActivity()
+    }
+
+    fun initActivity() {
         btn_show_toast.setOnClickListener {
             log("Button click event captured")
             Toast.makeText(this, " Toast Example ", Toast.LENGTH_SHORT).show()
         }
-        kotlinTraining()
+        btnSendMessage.setOnClickListener {
+            val userMessage = etUserMessage.text.toString()
+            Toast.makeText(this, userMessage, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SecondActivity::class.java)
+            intent.putExtra("user_message", userMessage)
+            startActivity(intent)
+
+        }
+        btnRecyclerViewDemo.setOnClickListener {
+            val intent = Intent(this, RecyclerViewDemoActivity::class.java)
+            startActivity(intent)
+        }
+//        kotlinTraining()
     }
 
     fun kotlinTraining() {
@@ -40,7 +58,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun dataClass() {
-        var dataObj = DataClassExample("jayu", "990", 32)
+        var dataObj =
+            DataClassExample(
+                "jayu",
+                "990",
+                32
+            )
 //        dataObj.
     }
 
@@ -141,10 +164,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         val people = listOf(
-            PersonClass("Me", 32),
-            PersonClass("Sis", 28),
-            PersonClass("Mum", 52),
-            PersonClass("Wife", 27)
+            PersonClass(
+                "Me",
+                32
+            ),
+            PersonClass(
+                "Sis",
+                28
+            ),
+            PersonClass(
+                "Mum",
+                52
+            ),
+            PersonClass(
+                "Wife",
+                27
+            )
         )
         var names = people.map { it.name } // { p -> p.name }
         for (name in names) {
@@ -202,7 +237,8 @@ class MainActivity : AppCompatActivity() {
 
         program.addTwoNumbers(2, 7)     // Simple way... for better understanding
 
-        program.addTwoNumbers(2, 7, object : MyInterface {   // Using Interface / OOPs way
+        program.addTwoNumbers(2, 7, object :
+            MyInterface {   // Using Interface / OOPs way
 
             override fun execute(sum: Int) {
                 println(sum)    // Body
@@ -269,7 +305,7 @@ class MainActivity : AppCompatActivity() {
         companion object {
             var name: String = "jayu"  // static variable
             fun printMyName() {    // static function
-                println("student id is : ${name}")
+                println("student id is : $name")
             }
         }
     }
@@ -286,7 +322,7 @@ class MainActivity : AppCompatActivity() {
     object StudentObjectClass {
         var name: String = "jayu"  // static variable
         fun printMyName() {    // static function
-            println("student id is : ${name}")
+            println("student id is : $name")
         }
 
         init {
@@ -295,7 +331,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun classDefination() {
-        var student = StudentX("jayu", 10)
+        var student =
+            StudentX("jayu", 10)
         log("student id is : ${student.id}")
     }
 
@@ -364,7 +401,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun extensionFunction() {
-        var extFunObj = ExtensionFunctionClass()
+        var extFunObj =
+            ExtensionFunctionClass()
         var passedStudent = extFunObj.studentPassed(79)
         var distinctionStudent = extFunObj.isDistinction(79)
         log("Student passed : $passedStudent")
