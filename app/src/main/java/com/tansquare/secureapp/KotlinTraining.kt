@@ -1,5 +1,10 @@
 package com.tansquare.secureapp
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
 class KotlinTraning() {
 
     init {
@@ -26,6 +31,34 @@ class KotlinTraning() {
         nullSafetyCalls()
         extraClass1()
         dataClass()
+        coroutineClass()
+    }
+
+    fun coroutineClass() {
+        // IO - Network and Database operations
+        // Main - for doing work on main thread
+        // default - for any computation work
+        CoroutineScope(Dispatchers.IO).launch {
+            fakeAPIrequest()
+        }
+    }
+
+    private suspend fun fakeAPIrequest() {
+        val result = getResult1FromApi()
+    }
+
+    private suspend fun getResult1FromApi(): String {
+        logThread("getResult1FromApi")
+        // delay single coroutine
+        delay(1000)
+        // this will delay entier thread with other coroutine, dont do this
+        //        Thread.sleep(1000)
+
+        return "JOB1 Done"
+    }
+
+    private fun logThread(methodName: String) {
+        Helper.log("debug: ${methodName} : ${Thread.currentThread().name}")
     }
 
     fun dataClass() {
